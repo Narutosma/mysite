@@ -1,0 +1,58 @@
+
+
+/* effect1 of css3*/
+.effect1 .demo{
+    position: relative;
+    margin-left: 20%;
+}
+
+
+.effect1 .dot{
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.effect1 .dot:first-of-type{
+    background: aquamarine;
+    animation: effect1 2s ease infinite;
+    animation-delay: -1.5s;
+}
+
+.effect1 .dot:nth-of-type(2){
+    background-color: brown;
+    animation: effect1 2s ease infinite;
+    animation-delay: -1s;
+}
+
+.effect1 .dot:nth-of-type(3){
+    background-color: coral;
+    animation: effect1 2s ease infinite;
+    animation-delay: -0.5s;
+}
+
+.effect1 .dot:nth-of-type(4){
+    background: cornflowerblue;
+    animation: effect1 2s ease infinite;
+}
+
+@keyframes effect1{
+    0%{
+        transform: translate(0);
+    }
+    25%{
+        transform: translate(160%) ;
+    }
+    50%{
+        transform: translate(160%,160%);
+    }
+    75%{
+        transform: translate(0,160%);
+    }
+    100%{
+        transform: translate(0);
+    }
+}

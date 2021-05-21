@@ -1,32 +1,70 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <Layout>
+      <template #nav>
+          <div class="header">
+            <HeaderC />
+          </div>
+      </template>
+      <div class="main" ref="container">
+        <!-- Home -->
+        <router-view></router-view>
+      </div>
+    </Layout>
+    <Footer />
+    <!-- 回到顶部组件 -->
+    <ToTop />
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+import Layout from '@/components/Layout';
+import HeaderC from '@/components/HeaderC';
+import ToTop from '@/components/ToTop';
+// import BgImg from '@/views/Home/components/BgImg';
+import Footer from "@/components/Footer";
+export default {
+  components: {
+    Layout,
+    HeaderC,
+    ToTop,
+    Footer
+  },
+  data(){
+    return{
+      timer: null
     }
+  },
+  methods: {
+    scrollHandle(){
+      this.$bus.$emit("mainScroll");
+    },
+    setMainScroll(top){
+      // this.$refs.container.scrollTop = top;
+      window.scrollTo({
+        top,
+        behavior: "smooth",
+      });
+    }
+  },
+  mounted(){
+    this.$bus.$on("setMainScroll", this.setMainScroll);
+    // this.$refs.container.addEventListener("scroll", this.scrollHandle);
+    addEventListener("scroll",  this.scrollHandle);
+  },
+  beforeDestroy(){
+    this.$bus.$off("setMainScroll", this.setMainScroll);
+    // this.$refs.container.removeEventListener("scroll", this.scrollHandle);
+    removeEventListener("scroll", this.scrollHandle);
   }
+}
+</script>
+
+<style lang="less">
+body{
+  margin: 0;
+}
+.header{
+  height: 75px;
 }
 </style>

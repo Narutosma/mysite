@@ -1,29 +1,71 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+// VueRouter 
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
 
-Vue.use(VueRouter)
+import Home from '@/views/Home/index.vue';
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+    //  主页
+    {
+      name: "home",
+      path: "/",
+      meta: {
+        isHome: true
+      },
+      component: Home
+    },
+    // 留言版
+    {
+      name: "comment",
+      path: "/comment",
+      component: () => import("@/views/Comment")
+    },
+    // 时间轴
+    {
+        name: "timeline",
+        path: "/timeline",
+        component: () => import("@/views/Timeline")
+    },
+    // 项目效果
+    {
+        name: "effect",
+        path: "/effect",
+        component: () => import("@/views/Effect")
+    },
+    // 文章内容
+    {
+        name: "article",
+        path: "/article/:id",
+        meta: {
+          article: true
+        },
+        component: () => import("@/views/Article")
+    },
+    // 文章分类
+    {
+        name: "articleCategory",
+        path: "/article/cate/:id",
+        component: () => import("@/views/ArticleCategory")
+    },
+    // 关键字搜索
+    {
+        name: "articleByKey",
+        path: "/article",
+        component: () => import("@/views/ArticleCategory")
+    }
+];
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
-})
-
-export default router
+export default new VueRouter({
+    mode: 'history',
+    routes,
+    scrollBehavior(to, from, savePosition){
+        if(savePosition){
+            return savePosition;
+        }
+        return {
+            x: 0,
+            y: 0
+        }
+    }
+});

@@ -5,12 +5,20 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test:Icon": "vue serve ./src/components/Icon/test.vue",
+    "test:Card": "vue serve ./src/components/Card/test.vue",
+    "test:ArticleCard": "vue serve ./src/components/ArticleCard/test.vue",
+    "test:Layout": "vue serve ./src/components/Layout/test.vue"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "highlight.js": "^10.7.2",
+    "marked": "^2.0.3",
+    "mockjs": "^1.1.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.5.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

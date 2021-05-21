@@ -1,0 +1,23 @@
+@import "./var.less";
+// 固宽居中
+.container-center{
+    width: 800px;
+    padding-top: @headerHeight;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+// 设置背景图片
+// 图片名 和 扩展名
+@images: "../assets";
+.bgImg(@url, @ext){
+    background: url("@{images}/@{url}.@{ext}") ; 
+}
+
+// 自生水平垂直居中
+.self-center(@position: absolute){
+    position: @position;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
