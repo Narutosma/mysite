@@ -3,17 +3,34 @@
       <h2 class="title">Comments | <span>{{ list.total }}条</span></h2>
       <ul class="comment-message" id="CommentMessage">
           <li class="message" v-for="comment in list.rows" :key="comment.id">
-              <div class="user-info">
-                  <img class="user-avater" :src="comment.avatar" alt="">
-                  <div class="info">
-                      <span class="name">{{ comment.nickname }}</span>
-                      <span class="time">发布于 {{ releaseTime(comment.createDate) }}</span>
-                  </div>
+              <div class="comment-info">
+                  <div class="user-info">
+                    <img class="user-avater" :src="comment.avatar" alt="">
+                    <div class="info">
+                        <span class="name">{{ comment.nickname }}</span>
+                        <span class="time">发布于 {{ releaseTime(comment.createDate) }}</span>
+                    </div>
+                    </div>
+                    <p class="content">
+                        {{ comment.content }}
+                    </p>
+                    <span class="reply" @click="replyHandle(comment)">回复</span>
               </div>
-              <p class="content">
-                  {{ comment.content }}
-              </p>
-              <span class="reply">回复</span>
+              <!-- 回复信息 -->
+              <div class="reply-info" v-for="reply in comment.children" :key="reply.id">
+                  <div class="user-info">
+                  <img class="user-avater" :src="reply.avatar" alt="">
+                    <div class="info">
+                        <span class="name">{{ reply.nickname }}</span>
+                        <span class="time">回复于 {{ releaseTime(reply.createDate) }}</span>
+                    </div>
+                  </div>
+                    <p class="content">
+                        {{ reply.content }}
+                    </p>
+                    <!-- 有点问题暂时不处理 -->
+                    <!-- <span class="reply" @click="replyHandle(reply)">回复</span> -->
+              </div>
           </li>
       </ul>
   </div>
@@ -23,10 +40,14 @@
 // 评论列表组件
 import { releaseTime } from "@/utils";
 export default {
+    name: "Comment",
     props: {
         list: {
             type: Object,
             require: true
+        },
+        replyHandle: {
+            type: Function
         }
     },
     methods: {
@@ -38,6 +59,7 @@ export default {
 
 <style lang="less" scoped>
 @import "~@/styles/var.less";
+
     .comment-message{
         margin: 0;
         padding: 0;
@@ -45,11 +67,16 @@ export default {
     }
 
     .message{
-        /*padding-bottom: 25px;*/
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         margin-top: 25px;
         margin-bottom: 5px;
+    }
+    .comment-info,
+    .reply-info{
+        /*padding-bottom: 25px;*/
+        
         position: relative;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        
         .user-info{
             display: flex;
             align-items: center;
@@ -106,6 +133,10 @@ export default {
             }
         }
     }
+    
+    .reply-info{
+        padding-left: 60px;
+    }   
 
      
 

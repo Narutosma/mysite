@@ -1,5 +1,5 @@
 <template>
-  <header class="header-container" :class="{'no-top': !isTop, 'top': $route.meta.isHome && isTop}">
+  <header class="header-container" :class="{'no-top': !isTop || !$route.meta.isHome , 'top': $route.meta.isHome && isTop}">
     <nav class="header" @mouseenter="isTop = false" @mouseleave="leaveHandle">
       <RouterLink :to="{name: 'home'}" class="title">Pokemon Home</RouterLink>
     <ul class="nav">
@@ -10,13 +10,13 @@
         </RouterLink>
       </li>
       <li class="nav-item">
-        <a href="https://github.com/Linkegg" target="_blank">
+        <a href="https://github.com/Narutosma" target="_blank">
           <SymbolIcon href="duck"/>
           <span>GitHub</span>
         </a>
       </li>
       <li class="nav-item category-item">
-        <a href>
+        <a href="javascript:return">
           <SymbolIcon href="wugui"/>
           <span>文章分类</span>
         </a>
@@ -238,9 +238,11 @@ export default {
       text-align: center;
       cursor: pointer;
       transition: all 0.4s;
+      font-size: 16px;
       &:hover{
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 5px;
+        /*background: rgba(0, 0, 0, 0.3);*/
+        /*border-radius: 5px;*/
+        color: @link;
       }
     }
 }

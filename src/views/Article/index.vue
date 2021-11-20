@@ -1,20 +1,21 @@
 <template>
-    <div class="article-container">
+    <div class="article-container" v-if="load">
         <!-- 加载中。。。 需要修改  -->
-        <div class="mask" v-if="mask">
+        <!-- <div class="mask" v-if="mask">
             <img :src="pkq"/>
-        </div>
-        <template v-else>
-            <ImageBanner v-if="titleObj" :url="banner" :title="titleObj"/>
+        </div> -->
+        <ImageBanner v-if="titleObj" :url="banner" :title="titleObj"/>
+        <div class="article-content">
             <div class="markdown-body" v-html="article.htmlContent"></div>
-            <ArticleComment />
-        </template>
+            <ArticleComment />      
+        </div>
+        
     </div>
 </template>
 
 <script>
     import ImageBanner from '@/components/ImageBanner';
-    import banner from "@/assets/comment-img.png";
+    import banner from "@/assets/gengui.jpeg";
     import { getArticle } from "@/api/article";
     import ArticleComment from "./components/ArticleComment";
     import pkq from "@/assets/pikaqiu.gif";
@@ -32,7 +33,8 @@
                 article: {},
                 titleObj: null,
                 pkq,
-                mask: false
+                mask: false,
+                load: false
             }
         },
         created() {
@@ -41,6 +43,7 @@
                 this.article = res;
                 this.titleObj = res.articleInfo;
                 this.mask = false;
+                this.load = true;
             });
         }
     }
@@ -48,8 +51,10 @@
 
 <style scoped lang="less">
     @import "~@/styles/mixins.less";
+    @import "~@/styles/mixins.less";
     .article-container{
         .container-center();
+       
     }
 
     .mask{
@@ -69,8 +74,12 @@
             height: 250px;
         }
     }
+    .article-content{
+         .toUpAnimate;
+    }
 
     .markdown-body{
-        margin-top: 60px;
+        padding: 60px 10px;
+        background: rgba(255,255,255,0.8);
     }
 </style>

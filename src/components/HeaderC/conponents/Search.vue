@@ -1,12 +1,12 @@
 <template>
     <div class="search-container" :class="{focus: select}">
         <span class="search-icon" @click="handle"><SymbolIcon href="ball"/></span>
-        <input ref="inp" v-model.trim="keyWord" type="text" @focus="select = true" @blur="select = false" placeholder="查询一下有没有你感兴趣的吧~"/>
+        <input ref="inp" v-model.trim="keyWord" type="text" @focus="select = true" @blur="blurHandle" placeholder="查询一下有没有你感兴趣的吧~"/>
     </div>
 </template>
 
 <script>
-    import SymbolIcon from "@/components/Symbol"
+    import SymbolIcon from "@/components/Symbol";
     export default {
        components: {
            SymbolIcon
@@ -22,14 +22,19 @@
                // 让input聚焦
                this.$refs.inp.focus();
            },
+           blurHandle(){
+               // 在搜索框失去焦点后 隐藏起来的时候去掉文本框中的内容
+                this.select = false;
+                this.keyWord = "";
+           },
             searchKey(e){
                if(!this.keyWord){
-                   return
+                   return;
                }
                // 只有在聚焦状态下才能提交
                 if (e.key === "Enter" && this.select){
                     this.$router.push("/article?key=" + this.keyWord);
-                    this.keyWord = "";
+                    // this.keyWord = "";
                 }
             }
         },
@@ -43,6 +48,7 @@
 </script>
 
 <style scoped lang="less">
+    @import "~@/styles/var.less";
     .search-container {
         .search-icon{
             display: inline-block;
@@ -83,13 +89,13 @@
         // 给父级一个类名来控制子集的样式
         &.focus{
             .search-icon{
-                border: 1px solid #ccc;
+                border: 1px solid @link;
                 .svg-icon{
                     transform: rotate(-360deg);
                 }
             }
             input{
-                border: 1px solid #ccc;
+                border: 1px solid @link;
                 border-left: none;
                 width: 350px;
             }

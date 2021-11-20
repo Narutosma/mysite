@@ -6,3 +6,6 @@ export { default as releaseTime} from './releaseTime';
 
 // 防抖
 export { default as debounce } from './debounce';
+
+// 弹框
+export { default as showMessage} from "./showMessage";

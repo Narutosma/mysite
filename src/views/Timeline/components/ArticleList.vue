@@ -25,6 +25,7 @@
 </script>
 
 <style scoped lang="less">
+    @import "~@/styles/var.less";
     @bg: #f5f5f5;
     /* 每个月份 */
     .time-item {
@@ -51,7 +52,7 @@
             top: 25px;
             width: 10px;
             height: 10px;
-            background: red;
+            background: @link;
             border-radius: 50%;
         }
 

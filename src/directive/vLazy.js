@@ -1,7 +1,7 @@
 
 import bus from '@/eventBus';
 import { debounce } from "@/utils";
-import defalutImg from "@/assets/default.gif";
+import defalutImg from "@/assets/gg.gif";
 let imgs = [];
 
 const setImage = (img) => {

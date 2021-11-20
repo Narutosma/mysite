@@ -1,6 +1,8 @@
 import Mock from 'mockjs';
 import query from 'querystring'
 
+import img from "../assets/gg.jpeg";
+
 // 留言
 //  /api/comment?page=1&limit=10
 Mock.mock(/^\/api\/comment\/?(\?.+)?$/, "get", function(options){
@@ -16,7 +18,16 @@ Mock.mock(/^\/api\/comment\/?(\?.+)?$/, "get", function(options){
                     nickname:"@cname()",
                     content: "@cparagraph(1, 10)",
                     createDate: new Date(),
-                    avatar: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcq.qnzs.youth.cn%2Fassets%2Fuploads%2F3c59799925d6840022ddc3f01e3a6c8a.jpg&refer=http%3A%2F%2Fcq.qnzs.youth.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619674478&t=14502e20930b5f983e9bf893615c5122"
+                    avatar: img,
+                    children: [
+                        {
+                            id: "@guid",
+                            nickname: "@cname()",
+                            content: "@cparagraph(1, 10)",
+                            createDate: new Date(),
+                            avatar: img
+                        }
+                    ]
                 }
             ]
         }
@@ -33,7 +44,31 @@ Mock.mock("/api/comment", "post", {
             nickname: "@cname()",
             content: "@cparagraph(1, 10)",
             createDate: new Date(),
-            avatar: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcq.qnzs.youth.cn%2Fassets%2Fuploads%2F3c59799925d6840022ddc3f01e3a6c8a.jpg&refer=http%3A%2F%2Fcq.qnzs.youth.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619674478&t=14502e20930b5f983e9bf893615c5122"
+            avatar: img,
+            children: [
+                {
+                    id: "@guid",
+                    nickname: "@cname()",
+                    content: "@cparagraph(1, 10)",
+                    createDate: new Date(),
+                    avatar: img
+                }
+            ]
+        }
+    ]
+});
+
+// 回复评论
+Mock.mock("/api/reply", "post", {
+    code: 200,
+    msg: "",
+    data: [
+        {
+            id: "@guid",
+            nickname: "@cname()",
+            content: "@cparagraph(1, 10)",
+            createDate: new Date(),
+            avatar: img
         }
     ]
 });

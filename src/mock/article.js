@@ -1,6 +1,10 @@
 
 import Mock from 'mockjs';
 import qs from 'querystring';
+
+import bjm from "../assets/bjm.jpeg";
+import gg from "../assets/gg.jpeg";
+
 // 查询所有文章
 Mock.mock(/^\/api\/article\/?(\?.+)?$/, "get", function(option){
     const q = qs.parse(option.url);
@@ -22,7 +26,7 @@ Mock.mock(/^\/api\/article\/?(\?.+)?$/, "get", function(option){
                     "commentNumber|0-100": 0,
                     createDate: "@date()",
                     // thumb: "@image(400*300, @color, #fff, @natural)"
-                    thumb: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcq.qnzs.youth.cn%2Fassets%2Fuploads%2F3c59799925d6840022ddc3f01e3a6c8a.jpg&refer=http%3A%2F%2Fcq.qnzs.youth.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619674478&t=14502e20930b5f983e9bf893615c5122"
+                    thumb: bjm
                 }
             ]
         }
@@ -57,7 +61,7 @@ Mock.mock(/^\/api\/article(\/?.+)$/, "get", {
         articleInfo: {
             id: "@guid",
             title: "@ctitle(10)",
-            avatar: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcq.qnzs.youth.cn%2Fassets%2Fuploads%2F3c59799925d6840022ddc3f01e3a6c8a.jpg&refer=http%3A%2F%2Fcq.qnzs.youth.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619674478&t=14502e20930b5f983e9bf893615c5122",
+            avatar: gg,
             name: "Link",
             createDate: new Date(),
             views: 10
@@ -273,7 +277,7 @@ Mock.mock(/^\/api\/article([?].+)$/, "get", {
                 "commentNumber|0-100": 0,
                 createDate: "@date()",
                 // thumb: "@image(400*300, @color, #fff, @natural)"
-                thumb: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcq.qnzs.youth.cn%2Fassets%2Fuploads%2F3c59799925d6840022ddc3f01e3a6c8a.jpg&refer=http%3A%2F%2Fcq.qnzs.youth.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619674478&t=14502e20930b5f983e9bf893615c5122"
+                thumb: bjm
             }
         ]
     }

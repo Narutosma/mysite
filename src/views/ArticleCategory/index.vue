@@ -11,7 +11,7 @@
     import More from "@/components/More";
     import { getArticles } from "@/api/article";
     import ImageBanner from '@/components/ImageBanner';
-    import Banner from "@/assets/comment-img.png";
+    import Banner from '@/assets/gengui.jpeg';
     export default {
        components: {
            Article,
@@ -73,6 +73,7 @@
 
     .article-category-container{
         .container-center();
+        background: transparent;
     }
 
     h2{

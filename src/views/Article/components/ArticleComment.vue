@@ -25,12 +25,12 @@
             }
         },
         methods: {
-            async handle(name, content, callback){
-                const res = await addComment(name, content);
+            async handle(formDate, callback){
+                const res = await addComment(formDate.name, formDate.content);
                 this.list.rows.unshift(res[0]);
                 this.list.total++;
                 // 在新增评论后执行callback
-                callback && callback();
+                callback && callback("评论成功");
           }
         },
         async created() {
@@ -43,6 +43,8 @@
 <style scoped lang="less">
     .article-comment-container{
         margin-top: 100px;
+        padding: 15px;
+        
     }
 
     .liuyan{

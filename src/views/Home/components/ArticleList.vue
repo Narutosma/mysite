@@ -55,9 +55,9 @@ export default {
 }
 h3 {
   font-size: 18px;
-  color: @words;
   border-bottom: 1px dashed @lightWords;
   line-height: 40px;
+  color: #f6f8fa;
 }
 .article-card-container {
   margin-top: 50px;

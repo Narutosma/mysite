@@ -21,12 +21,12 @@ export default {
 <style scoped lang="less">
   @import "~@/styles/mixins.less";
 
-  .home-container{
-    background-image: url("../../assets/kyotoanimation.png");
-  }
+  /*.home-container{*/
+  /*  background-image: url("../../assets/liekongzuo.webp");*/
+  /*}*/
 
   .main-content{
     .container-center();
-    
+    background: transparent;
   }
 </style>

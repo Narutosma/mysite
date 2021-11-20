@@ -27,6 +27,7 @@ export default {
 </script>
 
 <style scoped lang="less">
+    @import "~@/styles/var.less";
     .more-container{
         text-align: center;
         transform-style: preserve-3d;
@@ -46,8 +47,8 @@ export default {
 
             &:hover{
                 box-shadow: 0 0 4px rgb(255, 165, 0, 85%);
-                color: #FE9600;
-                border: 1px solid orange;
+                color: @link;
+                border: 1px solid @link;
             }
 
             &.loading{

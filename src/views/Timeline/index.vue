@@ -1,20 +1,20 @@
 <template>
     <div class="time-line-container" v-loading="loading">
         <ImageBanner :url="Banner" title="时光轴"/>
-        <ul class="time-line">
-            <!-- 循环遍历 -->
+        <ul class="time-line" v-if="!loading">
+        <!-- 循环遍历 -->
             <li class="time-list" v-for="item in list" :key="item.id">
                 <h2 @click="handle"><Icon type="list"/>{{ item.month }}</h2>
                 <!-- 循环遍历 日期内的每一项文章 -->
                 <ArticleTitle :list="item.children"/>
             </li>
-        </ul>
+    </ul>
     </div>
 </template>
 
 <script>
     import ImageBanner from "@/components/ImageBanner";
-    import Banner from "@/assets/comment-img.png";
+    import Banner from '@/assets/gengui.jpeg';
     // import ArticleList from "./components/ArticleList";
     import ArticleTitle from './components/ArticleList'
     import Icon from "@/components/Icon";
@@ -50,6 +50,7 @@
     @import "~@/styles/mixins.less";
     .time-line-container{
         .container-center();
+        background: transparent;
     }
 
 
@@ -60,6 +61,7 @@
         padding: 0;
         list-style: none;
         position: relative;
+        .toUpAnimate;
 
         /* 总轴 */
         &::before{
@@ -68,7 +70,14 @@
             height: 100%;
             width: 1px;
             position: absolute;
-            background: red;
+            background: @link;
+        }
+
+        /* 最后面 */
+        &::after{
+            content: "再往前就很遥远了。";
+            color: #Fff;
+            margin-left: 20px;
         }
 
         li.time-list{
@@ -77,14 +86,14 @@
             padding-bottom: 30px;
             h2{
                 margin: 20px 0 20px 30px;
-
+                color: #f6f8fa;
                 .iconfont{
                     position: absolute;
                     left: -18px;
                     font-size: 16px;
                     width: 36px;
                     height: 36px;
-                    background: red;
+                    background: @link;
                     border-radius: 50%;
                     text-align: center;
                     line-height: 36px;

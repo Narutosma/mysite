@@ -57,6 +57,7 @@
 <style scoped lang="less">
 
     @import "~@/styles/var.less";
+    @import "~@/styles/mixins.less";
 
     @duration: all 0.6s;
     .article-card {
@@ -67,8 +68,10 @@
         margin: 50px 0;
         box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         transition: @duration;
-        animation: cardShow 0.5s;
+        // animation: cardShow 0.5s;
         display: flex;
+        // 过渡动画
+        .toUpAnimate;
         &.right {
             flex-direction: row-reverse;
 
@@ -96,16 +99,16 @@
     }
 
     // 出场动画
-    @keyframes cardShow{
-        0%{
-            opacity: 0;
-            transform: translateY(80px);
-        }
-        100%{
-            opacity: 1;
-            transform: translateY(0px);
-        }
-    }
+    // @keyframes cardShow{
+    //     0%{
+    //         opacity: 0;
+    //         transform: translateY(80px);
+    //     }
+    //     100%{
+    //         opacity: 1;
+    //         transform: translateY(0px);
+    //     }
+    // }
 
     .image {
         flex: 1 1 53%;
@@ -125,7 +128,7 @@
         padding: 20px 30px;
         box-sizing: border-box;
         text-align: right;
-
+        background-color: rgba(255, 255, 255, 0.7);
         .svg-icon{
             width: 15px;
             height: 15px;

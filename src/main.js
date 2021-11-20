@@ -18,6 +18,13 @@ Vue.directive("loading", vLoading);
 // 事件总线
 import "@/eventBus.js";
 
+// 弹框工具
+import showMessage from "@/utils/showMessage.js";
+Vue.prototype.$showMessage = showMessage;
+
+// 
+import "animate.css";
+
 // VueRouter
 import router from '@/router';
 

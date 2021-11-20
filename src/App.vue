@@ -8,7 +8,9 @@
       </template>
       <div class="main" ref="container">
         <!-- Home -->
-        <router-view></router-view>
+        <transition :duration="400" enter-active-class="animate__fadeIn" leave-active-class="animate__fadeOut" mode="out-in">
+           <router-view class="animate__animated"></router-view>
+        </transition>
       </div>
     </Layout>
     <Footer />

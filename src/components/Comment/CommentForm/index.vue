@@ -1,59 +1,87 @@
 <template>
     <form ref="container" class="data-form-container" id="data-form-container" @submit.prevent="postComment">
-        <div class="touxiang" :class="{'avatabox': flag}">
-            <img class="tx" @click="selectImg" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcq.qnzs.youth.cn%2Fassets%2Fuploads%2F3c59799925d6840022ddc3f01e3a6c8a.jpg&refer=http%3A%2F%2Fcq.qnzs.youth.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619674478&t=14502e20930b5f983e9bf893615c5122" alt="">
+        <div class="touxiang">
+            <img class="tx" :src="gg" alt="">
             <div class="avata-list">
                 头像选择
             </div>
         </div>
         <div class="comment-info">
-            <textarea v-model.trim="content" class="comment-txt" placeholder="你是我一生唱不完的歌"></textarea>
+            <textarea v-model.trim="formDate.content" class="comment-txt" :placeholder="!reply?'你是我一生唱不完的歌~':`@回复 ${reply.nickname}`"></textarea>
             <button class="submit" :disabled="disabled">{{ disabled? "发射中...": 'biu' }}~</button>
-            <input type="text" class="nickname" placeholder="取一个酷酷的代号吧~" v-model="nickname">
+            <input type="text" class="nickname" placeholder="取一个酷酷的代号吧~" v-model="formDate.nickname">
         </div>
     </form>
 </template>
 
 <script>
+    import gg from "@/assets/gg.jpeg";
     export default {
+        props: ["reply"],
         data(){
             return {
-                content: "",
-                nickname: "",
+                formDate: {
+                    content: "",
+                    nickname: "",
+                },
                 disabled: false,
-                flag: false
+                // flag: false,
+                gg
+            }
+        },
+        watch: {
+            reply: {
+                handler(newValue){
+                    this.reply = newValue;
+                }
             }
         },
         methods: {
             // 新增评论
             postComment(){
-                if(!this.nickname || !this.content){
+                console.log(this.reply);
+                if(!this.formDate.nickname || !this.formDate.content){
                     alert("用户名或内容不能为空");
                     return ;
                 }
+
+                this.$showMessage({
+                    content: "评论提交中",
+                    type: "info",
+                    container: this.$refs.container
+                });
+
                 // 控制提交按钮是否可选中
                 this.disabled = true;
-                this.$emit("submit", this.nickname, this.content, () => {
-                    this.content = "";
-                    this.nickname = "";
-                    this.disabled = false;
+                this.$emit("submit", this.formDate, (msg) => {
+                    const self = this;
+                    this.$showMessage({
+                        content: msg,
+                        type: "success",
+                        container: this.$refs.container,
+                        callback(){
+                            self.formDate.content = "";
+                            self.formDate.nickname = "";
+                            self.disabled = false;
+                        }
+                    });
                 });
             },
             // 显示头像框
-            selectImg(){
-                this.flag = true;
-            },
-            // 隐藏头像框
-            hiddenImg(e){
-                // 当 头像选择框显示的时候才去隐藏
-                if (!this.flag){
-                    return ;
-                }
-                if(e.target.className === "tx"){
-                    return ;
-                }
-                this.flag = false;
-            }
+            // selectImg(){
+            //     this.flag = true;
+            // },
+            // // 隐藏头像框
+            // hiddenImg(e){
+            //     // 当 头像选择框显示的时候才去隐藏
+            //     if (!this.flag){
+            //         return ;
+            //     }
+            //     if(e.target.className === "tx"){
+            //         return ;
+            //     }
+            //     this.flag = false;
+            // }
         },
         mounted() {
             addEventListener("click", this.hiddenImg);

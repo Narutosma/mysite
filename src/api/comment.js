@@ -17,3 +17,12 @@ export async function addComment(nickname, content){
         content
     });
 }
+
+// 回复评论
+export async function replyComment(id, nickname, content){
+    return await request.post("/api/comment", {
+        id,
+        nickname,
+        content
+    });
+}

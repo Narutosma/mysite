@@ -2,10 +2,6 @@
     <div class="effect-container">
         <ImageBanner :url="banner" title="项目&效果"/>
         <ul class="effect-list">
-            <li class="item">
-                <a class="title" href="file:///Users/linke/Desktop/mysite/src/project/loading/index.html" target="_blank">Loading <span>github</span></a>
-                <div class="description">css3 loading效果</div>
-            </li>
             <li class="item" v-for="i in 5" :key="i">
                 <a class="title" href="https://github.com/" target="_blank">项目名称 <span>github</span></a>
                 <div class="description">迪昂亩描述</div>
@@ -16,14 +12,14 @@
 
 <script>
     import ImageBanner from '@/components/ImageBanner';
-    import banner from '@/assets/comment-img.png';
+    // import banner from '@/assets/comment-img.png';
     export default {
         components: {
             ImageBanner
         },
         data(){
             return {
-                banner
+                // banner
             }
         }
     }
@@ -33,6 +29,7 @@
     @import "~@/styles/mixins.less";
     .effect-container{
         .container-center();
+        background: transparent;
     }
 
     .effect-list{
@@ -46,6 +43,7 @@
             margin: 30px 0;
             border-radius: 5px;
             box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.8);
             transition: 0.4s;
             .title{
                 font-size: 24px;

@@ -1,12 +1,13 @@
 <template>
-    <form ref="container" class="data-form-container" id="data-form-container" @submit.prevent="postComment">
+    <!-- <form ref="container" class="data-form-container" id="data-form-container" @submit.prevent="postComment">
         <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fcq.qnzs.youth.cn%2Fassets%2Fuploads%2F3c59799925d6840022ddc3f01e3a6c8a.jpg&refer=http%3A%2F%2Fcq.qnzs.youth.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1619674478&t=14502e20930b5f983e9bf893615c5122" alt="">
         <div class="comment-info">
             <textarea v-model.trim="content" class="comment-txt" placeholder="你是我一生唱不完的歌"></textarea>
             <button class="submit" :disabled="disabled">{{ disabled? "发射中...": 'biu' }}~</button>
             <input type="text" class="nickname" placeholder="取一个酷酷的代号吧~" v-model="nickname">
         </div>
-    </form>
+    </form> -->
+    <div>多余的</div>
 </template>
 
 <script>

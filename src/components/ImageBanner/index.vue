@@ -35,6 +35,7 @@ export default {
     .image-banner-container{
         width: 100%;
         position: relative;
+        .toDownAnimate;
         img.banner{text-shadow: 2px 2px 10px #000;
             width: 100%;
             height: 450px;
